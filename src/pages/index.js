@@ -1,7 +1,7 @@
-import OrderList from "../components/OrderList"
-import Inventory from "../components/Inventory"
 import { store } from '../store/store'
 import { Provider } from 'react-redux'
+import Cart from "@/components/CartItem"
+import Catalog from "../components/Catalog"
 
 export default function App() {
 
@@ -9,9 +9,9 @@ export default function App() {
 		<Provider store={store}>
 			<div className="container mx-auto">
 				<h1 className="mt-3 text-xl">Ecart</h1>
-				<OrderList />
+				<Cart />
 				<hr />
-				<Inventory />
+				<Catalog />
 			</div>
 		</Provider>
 	)

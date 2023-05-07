@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
-import { addProduct } from "../store/productSlice"
+import { addProduct } from "../store/cartSlice"
 
 
-export default function Inventory() {
-	const { products, orderList, totalPrice } = useSelector(state => state.products)
+export default function Catalog() {
+	const { products, cart } = useSelector(state => state.cart)
 	const dispatch = useDispatch()
-
-
 
 	return (
 		<>
@@ -21,10 +19,11 @@ export default function Inventory() {
 								className="px-2 mr-2 border-2 rounded border-sky-700 hover:bg-sky-100"
 								type="button"
 								onClick={() => {
-									dispatch(addProduct({ id: product.id }))
+									dispatch(addProduct(product.id, product.title, product.price))
+									console.log('cart: ', cart)
 								}}
 							>
-								Buy
+								Add to Cart
 							</button>
 							{product.title} - ${product.price} ({product.selected} selected, {product.stock} in stock)
 						</li>

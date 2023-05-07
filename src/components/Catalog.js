@@ -8,11 +8,6 @@ export default function Catalog() {
 	const dispatch = useDispatch()
 
 
-	const handleAddProduct = (item) => {
-		dispatch(addProduct(item))
-		// setSelected(prev => prev + 1)
-	}
-
 	return (
 		<>
 			<ul>
@@ -26,11 +21,13 @@ export default function Catalog() {
 								className="px-2 mr-2 border-2 rounded border-sky-700 disabled:text-gray-400 disabled:border-sky-300 disabled:cursor-not-allowed hover:bg-gray-100"
 								type="button"
 								disabled={product.stock === 0}
-								onClick={() => dispatch(addProduct(product))}
+								onClick={() => {
+									dispatch(addProduct(product))
+								}}
 							>
 								Add to Cart
 							</button>
-							{product.title} - ${product.price}({ } selected, {product.stock} in stock)
+							{product.title} - ${product.price}({product.selected} selected, {product.stock} in stock)
 						</li>
 					))
 				}

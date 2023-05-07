@@ -3,8 +3,17 @@ import CartItem from "./CartItem"
 
 
 export default function Cart() {
-	const { cart, totalCount } = useSelector(state => state.cart)
+	const { cart, totalCount, totalPrice } = useSelector(state => state.cart)
 
+	const getTotal = () => {
+		let totalQuantity = 0
+		let totalPrice = 0
+		cart.forEach(item => {
+			totalQuantity += item.quantity
+			totalPrice += item.price * item.quantity
+		})
+		return { totalQuantity, totalPrice }
+	}
 
 
 	return (
@@ -18,7 +27,8 @@ export default function Cart() {
 					</ul>
 				}
 			</div>
-			<p>Total: <small>$</small>{totalCount}</p>
+			<p>{getTotal().totalQuantity}</p>
+			<p>Total: <small>$</small>{getTotal().totalPrice}</p>
 		</>
 	)
 }

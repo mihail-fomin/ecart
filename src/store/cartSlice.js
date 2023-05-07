@@ -9,7 +9,6 @@ const initialState = {
 		{ id: 3, title: 'Apple', price: 8, stock: 20 },
 	],
 	cart: [],
-	totalCount: 0,
 	totalPrice: 0,
 }
 
@@ -25,9 +24,10 @@ const cartSlice = createSlice({
 			if (itemInCart) {
 				itemInCart.quantity++
 				itemInCart.sum = itemInCart.quantity * itemInCart.price
-				state.totalCount += itemInCart.sum
+				state.totalPrice += itemInCart.sum
 			} else {
 				state.cart.push({ ...action.payload, quantity: 1 })
+				state.totalPrice += action.payload.price
 			}
 		}
 	},

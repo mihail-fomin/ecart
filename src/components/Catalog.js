@@ -7,7 +7,6 @@ export default function Catalog() {
 	const { products, cart } = useSelector(state => state.cart)
 	const dispatch = useDispatch()
 
-	const [selected, setSelected] = React.useState(0)
 
 	const handleAddProduct = (item) => {
 		dispatch(addProduct(item))
@@ -24,17 +23,17 @@ export default function Catalog() {
 							key={product.id}
 						>
 							<button
-								className="px-2 mr-2 border-2 rounded border-sky-700 hover:bg-sky-100"
+								className="px-2 mr-2 border-2 rounded border-sky-700 disabled:text-gray-400 disabled:border-sky-300 disabled:cursor-not-allowed hover:bg-gray-100"
 								type="button"
+								disabled={product.stock === 0}
 								onClick={() => dispatch(addProduct(product))}
 							>
 								Add to Cart
 							</button>
-							{product.title} - ${product.price}({selected} selected, {product.stock} in stock)
+							{product.title} - ${product.price}({ } selected, {product.stock} in stock)
 						</li>
 					))
 				}
-
 			</ul>
 		</>
 	)

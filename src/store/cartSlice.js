@@ -19,9 +19,13 @@ const cartSlice = createSlice({
 	initialState,
 	reducers: {
 		addProduct: (state, action) => {
+			const itemInStock = state.products.find(item => item.id === action.payload.id)
 			const itemInCart = state.cart.find(item => item.id === action.payload.id)
+			itemInStock.stock--
 			if (itemInCart) {
 				itemInCart.quantity++
+				itemInCart.sum = itemInCart.quantity * itemInCart.price
+				state.totalCount += itemInCart.sum
 			} else {
 				state.cart.push({ ...action.payload, quantity: 1 })
 			}

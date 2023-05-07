@@ -3,7 +3,8 @@ import CartItem from "./CartItem"
 
 
 export default function Cart() {
-	const { cart } = useSelector(state => state.cart)
+	const { cart, totalCount } = useSelector(state => state.cart)
+
 
 
 	return (
@@ -17,6 +18,7 @@ export default function Cart() {
 					</ul>
 				}
 			</div>
+			<p>Total: <small>$</small>{totalCount}</p>
 		</>
 	)
 }

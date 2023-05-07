@@ -1,6 +1,6 @@
 import { store } from '../store/store'
 import { Provider } from 'react-redux'
-import Cart from "@/components/CartItem"
+import Cart from "@/components/Cart"
 import Catalog from "../components/Catalog"
 
 export default function App() {

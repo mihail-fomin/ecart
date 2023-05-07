@@ -4,9 +4,9 @@ import { sumCount, sumPrice } from "../utlis/countAndCalcPrice";
 
 const initialState = {
 	products: [
-		{ id: 1, title: 'Apple', price: 10, selected: 0, stock: 12 },
-		{ id: 2, title: 'Melon', price: 20, selected: 0, stock: 5 },
-		{ id: 3, title: 'Apple', price: 8, selected: 0, stock: 20 },
+		{ id: 1, title: 'Apple', price: 10, stock: 12 },
+		{ id: 2, title: 'Melon', price: 20, stock: 5 },
+		{ id: 3, title: 'Apple', price: 8, stock: 20 },
 	],
 	cart: [],
 	totalCount: 0,

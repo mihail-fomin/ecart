@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import CartItem from "./CartItem"
 
 
-export default function OrderList() {
+export default function Cart() {
 	const { cart } = useSelector(state => state.cart)
 
 

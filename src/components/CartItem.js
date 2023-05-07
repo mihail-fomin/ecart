@@ -1,11 +1,14 @@
 
 
-export default function CartItem({ id, title, price }) {
+export default function CartItem({ id, title, price, quantity }) {
 
 
 	return (
 		<>
-			<p>{title}</p>
+			<div className="flex">
+				<p>{title} - <small>$</small>{price} x {quantity}</p>
+			</div>
+
 		</>
 	)
 }

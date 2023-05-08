@@ -26,9 +26,15 @@ export default function Cart() {
 						))}
 					</ul>
 				}
+				{cart.length ?
+					<p className="mt-3">
+						You are ordering <strong>{getTotal().totalQuantity}</strong>
+						&nbsp;goods with a total price: <small>$</small>
+						<strong>{getTotal().totalPrice}</strong>
+					</p>
+					: ''
+				}
 			</div>
-			<p>{getTotal().totalQuantity}</p>
-			<p>Total: <small>$</small>{getTotal().totalPrice}</p>
 		</>
 	)
 }

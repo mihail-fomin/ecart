@@ -3,7 +3,7 @@ import CartItem from "./CartItem"
 
 
 export default function Cart() {
-	const { cart, totalCount, totalPrice } = useSelector(state => state.cart)
+	const { cart } = useSelector(state => state.cart)
 
 	const getTotal = () => {
 		let totalQuantity = 0

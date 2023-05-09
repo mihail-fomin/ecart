@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sumCount, sumPrice } from "../utlis/countAndCalcPrice";
 
 
 const initialState = {
@@ -32,26 +31,17 @@ const cartSlice = createSlice({
 			}
 		}
 	},
-	removeProduct: (state, action) => {
-		const itemInStock = state.products.find(item => item.id === action.payload.id)
-		const itemInCart = state.cart.find(item => item.id === action.payload.id)
-		itemInStock.stock++
-		if (itemInStock.stock > 1) {
-			itemInCart.quantity--
-			itemInCart.sum = itemInCart.quantity * itemInCart.price
-			state.totalPrice += itemInCart.sum
-			itemInStock.selected--
-		} else {
-			state.cart = state.cart.filter(item => item.id !== action.payload.id)
-		}
+	removeItem: (state, action) => {
+		state.cart = state.cart.filter(item => item.id !== action.payload)
 	},
 	decrementQuantity: (state, action) => {
-		const itemInStock = state.products.find(item => item.id === action.payload)
-		const itemInCart = state.cart.find(item => item.id === action.payload)
-		itemInCart.quantity--
-		itemInStock.selected--
+		state.cart = state.cart.map(item => {
+			if (item.id === action.payload) {
+				return { ...item, quantity: item.quantity - 1 }
+			}
+		})
 	}
 })
 
-export const { addProduct, removeProduct, incrementQuantity, decrementQuantity } = cartSlice.actions
+export const { addProduct, removeItem, decrementQuantity } = cartSlice.actions
 export default cartSlice.reducer

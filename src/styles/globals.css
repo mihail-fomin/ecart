@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 .btn {
-	@apply px-1 border-2 rounded border-sky-700;
+	@apply px-1 border-2 rounded border-sky-700
 }
 
 .btn:hover {
-	background-color: rgb(243 244 246);
+	background-color: rgb(243 244 246)
+}
+
+button:disabled {
+	@apply text-gray-400 border-sky-300 cursor-not-allowed
 }

@@ -34,11 +34,19 @@ const cartSlice = createSlice({
 			state.cart = state.cart.filter(item => item.id !== action.payload.id)
 		},
 		decrementQuantity: (state, action) => {
-			const itemInStock = state.stock.find(item => item.id === action.payload.id)
 			const itemInCart = state.cart.find(item => item.id === action.payload.id)
-			itemInStock.stock++
-			itemInStock.selected--
-			itemInCart.quantity--
+
+			if (itemInCart.quantity > 1) {
+				itemInCart.quantity--
+
+				const itemInStock = state.stock.find(item => item.id === action.payload.id)
+				itemInStock.selected--
+				itemInStock.stock++
+			} else {
+				state.cart = state.cart.filter(item => item.id !== action.payload.id)
+
+			}
+
 		}
 	},
 })

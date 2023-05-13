@@ -11,6 +11,7 @@ export default function CartItem({ id, title, price, quantity }) {
 			<li className="flex gap-2">
 				<button
 					className="btn"
+					// disabled={quantity === 1}
 					onClick={() => dispatch(decrementQuantity({ id }))}
 				>
 					-1

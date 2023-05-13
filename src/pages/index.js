@@ -7,7 +7,7 @@ export default function App() {
 
 	return (
 		<Provider store={store}>
-			<div className="container mx-auto">
+			<div className="mx-auto w-[90%]">
 				<h1 className="mt-3 text-xl">Ecart</h1>
 				<Cart />
 				<hr />

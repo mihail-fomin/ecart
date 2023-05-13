@@ -4,7 +4,7 @@ import { addProduct } from "../store/cartSlice"
 
 
 export default function Catalog() {
-	const { products, cart } = useSelector(state => state.cart)
+	const { stock, cart } = useSelector(state => state.cart)
 	const dispatch = useDispatch()
 
 
@@ -12,7 +12,7 @@ export default function Catalog() {
 		<>
 			<ul>
 				{
-					products.map(product => (
+					stock.map(product => (
 						<li
 							className="flex items-center mt-2"
 							key={product.id}

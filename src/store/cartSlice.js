@@ -31,20 +31,24 @@ const cartSlice = createSlice({
 			}
 		},
 		removeItem: (state, action) => {
+			const itemInCart = state.cart.find(item => item.id === action.payload.id)
+			const itemInStock = state.stock.find(item => item.id === action.payload.id)
+			itemInStock.stock += itemInStock.selected
+			itemInStock.selected = 0
 			state.cart = state.cart.filter(item => item.id !== action.payload.id)
 		},
 		decrementQuantity: (state, action) => {
 			const itemInCart = state.cart.find(item => item.id === action.payload.id)
+			const itemInStock = state.stock.find(item => item.id === action.payload.id)
 
 			if (itemInCart.quantity > 1) {
 				itemInCart.quantity--
-
 				const itemInStock = state.stock.find(item => item.id === action.payload.id)
 				itemInStock.selected--
 				itemInStock.stock++
 			} else {
 				state.cart = state.cart.filter(item => item.id !== action.payload.id)
-
+				itemInStock.selected = 0
 			}
 
 		}

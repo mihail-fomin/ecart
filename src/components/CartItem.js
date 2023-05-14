@@ -2,7 +2,7 @@ import { addProduct, decrementQuantity, removeItem } from "@/store/cartSlice"
 import { useDispatch } from "react-redux"
 
 
-export default function CartItem({ id, title, price, quantity }) {
+export default function CartItem({ id, title, price, quantity, full }) {
 	const dispatch = useDispatch()
 
 
@@ -16,6 +16,7 @@ export default function CartItem({ id, title, price, quantity }) {
 					-1
 				</button>
 				<button className="btn"
+					disabled={full === true}
 					onClick={() => {
 						dispatch(addProduct({ id }))
 					}}

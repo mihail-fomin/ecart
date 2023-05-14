@@ -47,11 +47,15 @@ const cartSlice = createSlice({
 			if (itemInCart.quantity > 1) {
 				// making increment button active
 				itemInCart.full = false
+
 				itemInCart.quantity--
 				const itemInStock = state.stock.find(item => item.id === action.payload.id)
 				itemInStock.selected--
 				itemInStock.stock++
 			} else {
+				// increment item in stock first
+				itemInStock.stock++
+
 				state.cart = state.cart.filter(item => item.id !== action.payload.id)
 				itemInStock.selected = 0
 			}

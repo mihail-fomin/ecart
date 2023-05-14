@@ -8,7 +8,7 @@ export default function CartItem({ id, title, price, quantity, full }) {
 
 	return (
 		<>
-			<li className="flex gap-2">
+			<li className="flex gap-2 mt-2">
 				<button
 					className="btn"
 					onClick={() => dispatch(decrementQuantity({ id }))}

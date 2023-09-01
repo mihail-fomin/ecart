@@ -1,32 +1,43 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice, PrepareAction } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 
 
-export interface CartItem {
+export interface Item {
   id: number,
   title: string,
   price: number,
   stock: number,
 }
 
-interface CartState {
-  stock: CartItem[],
-  cart: CartItem[],
-  totalPrice: number,
+export interface CartItem {
+  id: number,
+  quantity: number,
 }
 
-const initialState: CartState = {
+// let myMap = new Map<string, number>();
+
+
+interface AppState {
+  stock: { [key: number]: Item },
+  cart: CartItem[]
+}
+
+const initialState: AppState = {
   stock: [
     { id: 1, title: 'Apple', price: 10, stock: 12, },
     { id: 2, title: 'Melon', price: 20, stock: 5, },
     { id: 3, title: 'Apple', price: 8, stock: 20, },
   ],
   cart: [],
-  // cart: JSON.parse(localStorage.getItem('order') || '[]'),
-  totalPrice: 0,
 }
 
+const loadFromLocalStorage = createAction <PrepareAction<AppState>, string>('loadFromLocalStorage',() => {
+  const state = localStorage.getItem('AppState')
+  return {
+    payload: state
+  }
+})
 
 const cartSlice = createSlice({
   name: 'cart',

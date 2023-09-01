@@ -23,6 +23,7 @@ const initialState: CartState = {
     { id: 3, title: 'Apple', price: 8, stock: 20, },
   ],
   cart: [],
+  // cart: JSON.parse(localStorage.getItem('order') || '[]'),
   totalPrice: 0,
 }
 
@@ -31,6 +32,12 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    loadFromLocalStorage: (state) => {
+      const storedItems = localStorage.getItem('cartItems');
+      if (!!storedItems) {
+        state.cart = JSON.parse(storedItems);
+      }
+    },
     addProduct: (state, action: PayloadAction<number>) => {
       const itemInStock = state.stock.find(item => item.id === action.payload)
       const itemInCart = state.cart.find(item => item.id === action.payload)

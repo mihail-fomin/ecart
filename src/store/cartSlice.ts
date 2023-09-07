@@ -32,12 +32,14 @@ const initialState: AppState = {
   cart: [],
 }
 
-const loadFromLocalStorage = createAction <PrepareAction<AppState>, string>('loadFromLocalStorage',() => {
-  const state = localStorage.getItem('AppState')
+ const state = localStorage.getItem('AppState')
+const loadFromLocalStorage = createAction <PrepareAction<AppState>, string>('cart/loadFromLocalStorage',(state) => {
   return {
     payload: state
   }
 })
+
+loadFromLocalStorage(state)
 
 const cartSlice = createSlice({
   name: 'cart',
